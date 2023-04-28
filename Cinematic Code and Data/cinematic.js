@@ -1,4 +1,42 @@
 
+class Title extends Phaser.Scene
+{
+    constructor ()
+    {
+        super({ key: 'Title' });
+    }
+    preload()
+    {
+        this.load.image('title', 'assets/scene1.jpg');
+    }
+    create ()
+    {
+        const img = this.add.sprite(400, 300, 'title').setAlpha(1.0);
+        img.scale = 0.2;
+
+        this.textObject = this.add.text(
+            100, //x
+            100,//y
+            "Chicken Soup Studios", //text
+            {
+                font: "50px Georgia",
+                color: "#6fa5d9",
+            } //style
+        );
+
+        this.input.once('pointerdown', function ()
+        {
+
+            console.log('From SceneA to SceneB');
+
+            this.scene.start('sceneA');
+
+        }, this);
+    }
+        
+}
+
+
 class SceneA extends Phaser.Scene
 {
     constructor ()
@@ -15,6 +53,16 @@ class SceneA extends Phaser.Scene
     {
         const image = this.add.sprite(400, 300, 'face').setAlpha(1.0);
         image.scale = 0.25;
+        
+        this.textObject = this.add.text(
+            300, //x
+            100,//y
+            "Where are all my shep?", //text
+            {
+                font: "30px Georgia",
+                color: "#6fa5d9",
+            } //style
+        );
 
         this.input.once('pointerdown', function ()
         {
@@ -140,7 +188,7 @@ let config = {
     width: 800,
     height: 600,
     backgroundColor: 0x421278,
-    scene: [SceneA, SceneB, SceneC, SceneD],
+    scene: [Title, SceneA, SceneB, SceneC, SceneD],
 }
 
 let game = new Phaser.Game(config);
