@@ -109,8 +109,8 @@ class SceneA extends Phaser.Scene
             console.log('From SceneA to SceneB');
 
             // fade to black
-            this.cameras.main.fadeOut(6000, 0, 0, 0)
-            
+            this.cameras.main.fadeOut(3000, 0, 0, 0)
+            backgroundMusic.stop();
             this.scene.start('sceneB');
 
         }, this);
@@ -147,20 +147,41 @@ class SceneB extends Phaser.Scene
             } //style
         );
         
-        const rect = new Phaser.Geom.Rectangle(250, 200, 300, 200);
-        const graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
-        graphics.strokeRectShape(rect);
+        
 
-        // graphics.fillRectShape(rect);
         let pos = 250;
         let space = 50;
+        let c = "#1B4F72";
+        let b = 0xA2D9CE;
+        let d = 0xF9E79F;
+        
+        const circle = new Phaser.Geom.Circle(75, pos +10, 10);
+        const graphics0 = this.add.graphics({ fillStyle: { color: d } });
+        graphics0.fillCircleShape(circle);
+
+        const rect = new Phaser.Geom.Rectangle(90, pos - 10, 100, 40);
+        const graphics = this.add.graphics({ fillStyle: { color: b } });
+        graphics.fillRectShape(rect);
+
+        const rect2 = new Phaser.Geom.Rectangle(90, pos+space - 10, 100, 40);
+        const graphics2 = this.add.graphics({ fillStyle: { color: b } });
+        graphics2.fillRectShape(rect2);
+
+        const rect3 = new Phaser.Geom.Rectangle(90, pos +2*space- 10, 100, 40);
+        const graphics3 = this.add.graphics({ fillStyle: { color: b } });
+        graphics3.fillRectShape(rect3);
+
+        const rect4 = new Phaser.Geom.Rectangle(90, pos+3*space - 10, 100, 40);
+        const graphics4 = this.add.graphics({ fillStyle: { color: b } });
+        graphics4.fillRectShape(rect4);
+        
         this.textObject = this.add.text(
             100, //x
             pos,//y
             "Play", //text
             {
                 font: "20px Georgia",
-                color: "#6fa5d9",
+                color: c,
             } //style
         );
         this.textObject = this.add.text(
@@ -169,7 +190,7 @@ class SceneB extends Phaser.Scene
             "Options", //text
             {
                 font: "20px Georgia",
-                color: "#6fa5d9",
+                color: c,
             } //style
         );
         this.textObject = this.add.text(
@@ -178,7 +199,7 @@ class SceneB extends Phaser.Scene
             "Credits", //text
             {
                 font: "20px Georgia",
-                color: "#6fa5d9",
+                color: c,
             } //style
         );
         this.textObject = this.add.text(
@@ -187,9 +208,19 @@ class SceneB extends Phaser.Scene
             "Quit", //text
             {
                 font: "20px Georgia",
-                color: "#6fa5d9",
+                color: c,
             } //style
         );
+
+        this.input.once('pointerdown', function ()
+        {
+
+            console.log('END');
+
+            // fade to black
+            this.cameras.main.fadeOut(6000, 0, 0, 0);
+
+        }, this);
 
     }
 
