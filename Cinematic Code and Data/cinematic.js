@@ -29,7 +29,7 @@ class Title extends Phaser.Scene
         let box = this.textObject = this.add.text(
             100, //x
             450,//y
-            "Dedicated to provide positive experiences for the player. Founded in April 2023 at University of Califorina Santa Cruz.", //text
+            "Dedicated to provide positive experiences for the player. Founded in April 2023 at University of Califorina Santa Cruz. (Click to proceed)", //text
             {
                 font: "20px Georgia",
                 color: "#6fa5d9",
