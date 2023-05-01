@@ -11,10 +11,11 @@ class Title extends Phaser.Scene
     }
     create ()
     {
+        
         const img = this.add.sprite(400, 300, 'title').setAlpha(1.0);
         img.scale = 0.2;
 
-        this.textObject = this.add.text(
+        const text1 = this.textObject = this.add.text(
             100, //x
             100,//y
             "Chicken Soup Studios", //text
@@ -23,6 +24,7 @@ class Title extends Phaser.Scene
                 color: "#6fa5d9",
             } //style
         );
+        text1.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
 
         let box = this.textObject = this.add.text(
             100, //x
@@ -230,85 +232,12 @@ class SceneB extends Phaser.Scene
     // }
 }
 
-class SceneC extends Phaser.Scene
-{
-    constructor ()
-    {
-        super({ key: 'sceneC' });
-    }
-
-    preload ()
-    {
-        this.load.image('mech', 'assets/Tepig.png');
-    }
-
-    create ()
-    {
-        const img = this.add.sprite(Phaser.Math.Between(0, 800), 300, 'mech');
-        img.scale = 0.25;
-
-        this.input.once('pointerdown', function (event)
-        {
-
-            console.log('From SceneC to SceneA');
-
-            this.scene.start('sceneD');
-
-        }, this);
-    }
-}
-
-class SceneD extends Phaser.Scene {
-
-    constructor() 
-    {
-        super({ key: 'sceneD' });
-    }
-
-    preload()
-    {
-        this.load.path = './assets/';
-        this.load.image('scene1', 'scene1.jpg');
-        this.load.image('scene2', 'scene2.jpg');
-        this.load.image('scene3', 'scene3.jpg');
-        this.load.image('chickensoup', 'Chicken Soup Studio.png');
-        this.load.image('tepig', 'Tepig.png');
-        console.log("finish preload");
-    }
-
-    create()
-    {
-        const image = this.add.image(900, 300, 'tepig');
-        image.scale = 0.5;
-        this.tweens.add({
-            targets: image,
-            x: 250,
-            ease: 'easeIn',
-            yoyo: false,
-            repeat: 0,
-            duration: 3000
-        });
-    
-        this.cameras.main.fadeIn(6000);
-        console.log('SceneD');
-        // this.time.delay()
-        this.input.once('pointerdown', () => {
-            // fade to black
-            this.cameras.main.fadeOut(6000, 0, 0, 0)
-            console.log('fade to black');
-        })
-    }
-    update(){}
-}
-
-
-
 let config = {
     type: Phaser.WEBGL,
     width: 800,
     height: 600,
     backgroundColor: 0x421278,
-    scene: [Title, SceneA, SceneB, SceneC, SceneD],
+    scene: [Title, SceneA, SceneB],
 }
 
 let game = new Phaser.Game(config);
